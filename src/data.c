@@ -81,7 +81,6 @@ int pare(Entry *data, int count, uint32_t pos, uint32_t neg, uint32_t *conf,
       continue;
     }
 
-    // Check each position
     int valid = 1;
     for (int j = 0; j < 5; j++) {
       if (conf[j] != 0 && (conf[j] & hash_single(data[i].word[j])) == 0) {
