@@ -65,6 +65,9 @@ int parse(char *filename, Entry **entries) {
 int print_word(char *word, char *secret) {
   int bgcolor = WHITE;
   int fgcolor = BLACK;
+  if (word[0] == '\0') {
+    return 0;
+  }
   uint32_t secretHash = hash_word(secret);
   for (int i = 0; i < 5; i++) {
     bgcolor = WHITE;

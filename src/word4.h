@@ -12,6 +12,7 @@
 #define MAX_ITERATIONS 100000
 
 enum { BLACK = 40, YELLOW = 43, GREEN = 42, WHITE = 47 };
+enum { USER = 0, AGENT = 1 };
 
 typedef struct Entry {
   char word[6];

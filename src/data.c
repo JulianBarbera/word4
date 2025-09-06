@@ -30,18 +30,21 @@ void swap(Entry *a, Entry *b) {
 }
 
 int partition(Entry entries[], int low, int high) {
-
   Entry pivot = entries[high];
-
   int i = low - 1;
 
   for (int j = low; j <= high - 1; j++) {
-    if (entries[j].reward > pivot.reward) {
+    int j_valid = (entries[j].word[0] != '\0');
+    int pivot_valid = (pivot.word[0] != '\0');
+
+    if (j_valid && !pivot_valid) {
+      i++;
+      swap(&entries[i], &entries[j]);
+    } else if (j_valid && pivot_valid && entries[j].reward > pivot.reward) {
       i++;
       swap(&entries[i], &entries[j]);
     }
   }
-
   swap(&entries[i + 1], &entries[high]);
   return i + 1;
 }
@@ -103,7 +106,7 @@ int pare(Entry *data, int count, uint32_t pos, uint32_t neg, uint32_t *conf,
 }
 
 int knock(Entry *data, int count, int pos) {
-  if (data[pos].word[0] != 0) {
+  if (data[pos].word[0] != '\0') {
     data[pos] = (Entry){};
     sort(data, 0, count - 1);
     return 1;
