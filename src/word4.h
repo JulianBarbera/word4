@@ -44,6 +44,7 @@ int pare(Entry *data, int count, uint32_t pos, uint32_t neg, uint32_t *conf,
 void value(Entry *data, Extrema *extremes, int count);
 int contains(Entry *data, int count, char *word);
 int knock(Entry *data, int count, int pos);
+int first_valid(Entry *data, int count);
 
 // io.c
 int parse(char *filename, Entry **entries);

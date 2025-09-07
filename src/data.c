@@ -92,7 +92,7 @@ int pare(Entry *data, int count, uint32_t pos, uint32_t neg, uint32_t *conf,
       }
 
       if (anti[j] != 0 && (anti[j] & hash_single(data[i].word[j])) != 0) {
-        valid = 1;
+        valid = 0;
         break;
       }
     }
@@ -101,15 +101,23 @@ int pare(Entry *data, int count, uint32_t pos, uint32_t neg, uint32_t *conf,
       data[i] = (Entry){};
     }
   }
-  sort(data, 0, count - 1);
-  return data[0].word[0] != '\0';
+  // sort(data, 0, count - 1);
+  return first_valid(data, count) >= 0;
 }
 
 int knock(Entry *data, int count, int pos) {
   if (data[pos].word[0] != '\0') {
     data[pos] = (Entry){};
-    sort(data, 0, count - 1);
     return 1;
   }
   return 0;
+}
+
+int first_valid(Entry *data, int count) {
+  for (int i = 0; i < count; i++) {
+    if (data[i].word[0] >= 'A' && data[i].word[0] <= 'Z') {
+      return i;
+    }
+  }
+  return -1;
 }
